@@ -1,9 +1,15 @@
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+
+(require 'platform)
+
+(require 'python)
+
 ;; -------------------------------------
 ;; Platform stuff
 ;; -------------------------------------
 
 (cond
- ((string-equal system-type "windows-nt")
+ ((system-is-windows)
   ;; Maximize the emacs window upon startup
   (w32-send-sys-command 61488)
 
@@ -19,11 +25,32 @@
   
   (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
   (el-get 'sync)
+
+  ;; Python Windows integration
+  (setq 
+   python-shell-interpreter "ipython"
+   python-shell-interpreter-args "--pylab"
+   python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+   python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+   python-shell-completion-setup-code
+   "from IPython.core.completerlib import module_completion"
+   python-shell-completion-module-string-code
+   "';'.join(module_completion('''%s'''))\n"
+   python-shell-completion-string-code
+   "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
   )
- ((string-equal system-type "darwin")
+ ((system-is-mac)
   ;; Darwin .emacs script goes here
+  (setq
+   python-shell-interpreter "ipython"
+   python-shell-interpreter-args "--pylab"
+   python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+   python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+   python-shell-completion-setup-code "from IPython.core.completerlib import module_completion"
+   python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n"
+   python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s''''))\n")
   )
- ((string-equal system-type "gnu/linux")
+ ((system-is-linux)
   ;; Linux .emacs script goes here
   )
 )
@@ -35,3 +62,4 @@
 ;; Jedi.el settings
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
+
