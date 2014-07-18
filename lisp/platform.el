@@ -14,4 +14,8 @@
   (interactive)
   (string-equal system-type "gnu/linux"))
 
+(defun system-is-cygwin ()
+  (interactive)
+  (string-equal system-type "cygwin"))
+
 (provide 'platform)
