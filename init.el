@@ -53,11 +53,11 @@
    ;; Your init file should contain only one such instance.
    ;; If there is more than one, they won't work right.
    )
-
+  
   (server-start)
-
+  
   (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-
+  
   (unless (require 'el-get nil 'noerror)
     (with-current-buffer
 	(url-retrieve-synchronously
@@ -67,8 +67,7 @@
   
   (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
   (el-get 'sync)
-  )
-
+ 
   (setq
    python-shell-interpreter "ipython"
    python-shell-interpreter-args "--pylab"
