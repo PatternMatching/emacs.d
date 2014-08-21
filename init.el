@@ -1,8 +1,36 @@
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("3c9d994e18db86ae397d077b6324bfdc445ecc7dc81bb9d528cd9bba08c1dac1" "c41402a24055fff3829d580a05384f3d147a5a4c12cc1a89668ab6bcda80078f" default)))
+ '(inhibit-startup-screen t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
+
+(load-theme 'zenburn t)
 
 (require 'platform)
-
 (require 'python)
+
+;; ELPA
+(require 'package)
+(package-initialize)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+
+;; Emacs IPython Notebook currently not working with IPython > 0.13
+;;
+;; (require 'ein)
 
 ;; -------------------------------------
 ;; Platform stuff
@@ -14,8 +42,6 @@
   (w32-send-sys-command 61488)
 
   ;; El-Get Installation
-  (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-
   (unless (require 'el-get nil 'noerror)
     (with-current-buffer
 	(find-file
@@ -23,9 +49,6 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   
-  (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-  (el-get 'sync)
-
   ;; Python Windows integration
   (setq 
    python-shell-interpreter "ipython"
@@ -41,44 +64,20 @@
   )
  ((system-is-mac)
   ;; Darwin .emacs script goes here
-  (custom-set-variables
-   ;; custom-set-variables was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(inhibit-startup-screen t))
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   )
-  
   (server-start)
-  
-  (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-  
+
   (unless (require 'el-get nil 'noerror)
     (with-current-buffer
 	(url-retrieve-synchronously
 	 "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
       (goto-char (point-max))
       (eval-print-last-sexp)))
-  
-  (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-  (el-get 'sync)
- 
-  (setq
-   python-shell-interpreter "ipython"
-   python-shell-interpreter-args "--pylab"
-   python-shell-prompt-regexp "In \\[[0-9]+\\]: "
-   python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
-   python-shell-completion-setup-code "from IPython.core.completerlib import module_completion"
-   python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n"
-   python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s''''))\n")
-  )
+  )  
  ((system-is-linux)
   ;; Linux .emacs script goes here
+  )
+ ((system-is-cygwin)
+  ;; Cygwin stuff goes here
   )
 )
 
@@ -89,4 +88,18 @@
 ;; Jedi.el settings
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
+
+;; el-get sync
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+(el-get 'sync)
+
+;; Set Python interpreter for use with python.el
+(setq
+ python-shell-interpreter "ipython"
+ python-shell-interpreter-args "--pylab"
+ python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+ python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+ python-shell-completion-setup-code "from IPython.core.completerlib import module_completion"
+ python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n"
+ python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s''''))\n")
 
