@@ -48,19 +48,6 @@
 	 "~/.emacs.d/el-get-install/el-get-install.el")
       (goto-char (point-max))
       (eval-print-last-sexp)))
-  
-  ;; Python Windows integration
-  (setq 
-   python-shell-interpreter "ipython"
-   python-shell-interpreter-args "--pylab"
-   python-shell-prompt-regexp "In \\[[0-9]+\\]: "
-   python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
-   python-shell-completion-setup-code
-   "from IPython.core.completerlib import module_completion"
-   python-shell-completion-module-string-code
-   "';'.join(module_completion('''%s'''))\n"
-   python-shell-completion-string-code
-   "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
   )
  ((system-is-mac)
   ;; Darwin .emacs script goes here
