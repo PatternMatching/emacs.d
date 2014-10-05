@@ -21,6 +21,7 @@
 (require 'platform)
 (require 'python)
 
+
 ;; ELPA
 (require 'package)
 (package-initialize)
@@ -59,7 +60,41 @@
 	 "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
       (goto-char (point-max))
       (eval-print-last-sexp)))
-  )  
+
+  ;; Set initial window size
+  (setq default-frame-alist
+	'(
+	  (width . 180) ; characters
+	  (height . 60) ; lines
+	  ))
+
+  (split-window-horizontally)
+
+  ;; Auto Complete Mode
+  (require 'auto-complete)
+  
+  ;; AucTex
+  (require 'tex)
+  (require 'tex-site)
+  (require 'font-latex)
+  (require 'preview)
+  (require 'auto-complete-auctex)
+
+  (setq TeX-view-program-list
+	(quote 
+	 (("Skim"
+	   (concat "/Applications/Skim.app"
+		   "/Contents/SharedSupport/displayline"
+		   " %n %o %b")))))
+  (setq TeX-view-program-selection
+	(quote (((output-dvi style-pstricks) "dvips and gv")
+		(output-dvi "xdvi")
+		(output-pdf "Skim")
+		(output-html "xdg-open"))))
+
+  (add-hook 'LaTeX-mode-hook (lambda ()
+			       (TeX-global-PDF-mode t)))
+  )
  ((system-is-linux)
   ;; Linux .emacs script goes here
   )
