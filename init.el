@@ -20,7 +20,7 @@
 
 (require 'platform)
 (require 'python)
-
+(require 'org-journal)
 
 ;; ELPA
 (require 'package)
