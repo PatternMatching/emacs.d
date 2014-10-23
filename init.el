@@ -49,6 +49,21 @@
 	 "~/.emacs.d/el-get-install/el-get-install.el")
       (goto-char (point-max))
       (eval-print-last-sexp)))
+
+  ;; Auto Complete Mode
+  (require 'auto-complete)
+  
+  ;; AucTex
+  (require 'tex)
+  (require 'tex-site)
+  (require 'font-latex)
+  (require 'preview)
+  (require 'auto-complete-auctex)
+
+  (add-hook 'LaTeX-mode-hook (lambda ()
+			       (TeX-global-PDF-mode t)))
+
+
   )
  ((system-is-mac)
   ;; Darwin .emacs script goes here
@@ -114,6 +129,9 @@
 ;; el-get sync
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 (el-get 'sync)
+
+;; Load MATLAB source files in Octave mode instead of Obj-C
+(add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
 
 ;; Set Python interpreter for use with python.el
 (setq
