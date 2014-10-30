@@ -37,9 +37,9 @@
 ;; Load org-journal.el
 (require 'org-journal)
 
-
-
+;; -----------------------------------
 ;; Auto Complete Mode
+;; -----------------------------------
 (require 'auto-complete)
 
 ;; -----------------------------------
