@@ -12,6 +12,8 @@
  ;; If there is more than one, they won't work right.
  )
 
+(server-start)
+
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
@@ -20,7 +22,6 @@
 
 (require 'platform)
 (require 'python)
-(require 'org-journal)
 
 ;; ELPA
 (require 'package)
@@ -28,6 +29,33 @@
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
+
+;; -----------------------------------
+;; Org-Mode
+;; -----------------------------------
+
+;; Load org-journal.el
+(require 'org-journal)
+
+
+
+;; Auto Complete Mode
+(require 'auto-complete)
+
+;; -----------------------------------
+;; LaTeX
+;; -----------------------------------
+
+;; AucTex
+(require 'tex)
+(require 'tex-site)
+(require 'font-latex)
+(require 'preview)
+(require 'auto-complete-auctex)
+
+(add-hook 'LaTeX-mode-hook (lambda ()
+			     (TeX-global-PDF-mode t)))
+
 
 ;; Emacs IPython Notebook currently not working with IPython > 0.13
 ;;
@@ -50,24 +78,27 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
 
-  ;; Auto Complete Mode
-  (require 'auto-complete)
-  
-  ;; AucTex
-  (require 'tex)
-  (require 'tex-site)
-  (require 'font-latex)
-  (require 'preview)
-  (require 'auto-complete-auctex)
+  ;; -------------------------------------
+  ;; LaTeX
+  ;; -------------------------------------
 
-  (add-hook 'LaTeX-mode-hook (lambda ()
-			       (TeX-global-PDF-mode t)))
+  (setq TeX-view-program-list
+	'(("Sumatra PDF"
+	   (concat "\"C:/Program Files (x86)/SumatraPDF/SumatraPDF.exe\""
+		   " -reuse-instance"
+		   (mode-io-correlate " -forward-search %b %n ")
+		   " %o"))))
+  (setq TeX-view-program-selection
+	(quote (((output-dvi style-pstricks) "dvips and gv")
+		(output-dvi "xdvi")
+		(output-pdf "Sumatra PDF")
+		(output-html "xdg-open"))))
 
-
+  ;; Reset org-journal home directory
+  (setq org-journal-dir "~/journal/")
   )
  ((system-is-mac)
   ;; Darwin .emacs script goes here
-  (server-start)
 
   (unless (require 'el-get nil 'noerror)
     (with-current-buffer
@@ -85,15 +116,9 @@
 
   (split-window-horizontally)
 
-  ;; Auto Complete Mode
-  (require 'auto-complete)
-  
-  ;; AucTex
-  (require 'tex)
-  (require 'tex-site)
-  (require 'font-latex)
-  (require 'preview)
-  (require 'auto-complete-auctex)
+  ;; -------------------------------------
+  ;; LaTeX
+  ;; -------------------------------------
 
   (setq TeX-view-program-list
 	(quote 
@@ -107,8 +132,6 @@
 		(output-pdf "Skim")
 		(output-html "xdg-open"))))
 
-  (add-hook 'LaTeX-mode-hook (lambda ()
-			       (TeX-global-PDF-mode t)))
   )
  ((system-is-linux)
   ;; Linux .emacs script goes here
