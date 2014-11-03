@@ -79,6 +79,14 @@
       (eval-print-last-sexp)))
 
   ;; -------------------------------------
+  ;; Magit
+  ;; -------------------------------------
+
+  ;; Starts up the msys ssh-agent to avoid prompting
+  ;; for RSA passphrase
+  (load-file "~/.ssh/agent.env.el")
+
+  ;; -------------------------------------
   ;; LaTeX
   ;; -------------------------------------
 
