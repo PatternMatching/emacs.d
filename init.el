@@ -68,7 +68,10 @@
 (cond
  ((system-is-windows)
   ;; Maximize the emacs window upon startup
-  (w32-send-sys-command 61488)
+  (if (and (>= emacs-major-version 24)
+	   (>= emacs-minor-version 4))
+      (toggle-frame-maximized)
+    (w32-send-sys-command 61488))
 
   ;; El-Get Installation
   (unless (require 'el-get nil 'noerror)
