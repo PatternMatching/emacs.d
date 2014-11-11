@@ -21,7 +21,6 @@
 (load-theme 'zenburn t)
 
 (require 'platform)
-(require 'python)
 
 ;; ELPA
 (require 'package)
@@ -38,9 +37,11 @@
 (require 'org-journal)
 
 ;; -----------------------------------
-;; Auto Complete Mode
+;; Text Editing Conveniences
 ;; -----------------------------------
 (require 'auto-complete)
+(require 'autopair)
+(require 'yasnippet)
 
 ;; -----------------------------------
 ;; LaTeX
@@ -57,6 +58,9 @@
 			     (TeX-global-PDF-mode t)))
 
 
+;; python-mode
+(require 'python-mode)
+
 ;; Emacs IPython Notebook currently not working with IPython > 0.13
 ;;
 ;; (require 'ein)
@@ -64,6 +68,26 @@
 ;; -------------------------------------
 ;; Platform stuff
 ;; -------------------------------------
+
+;; Auto-Complete settings
+(setq
+ ac-auto-start 2
+ ac-override-local-map nil
+ ac-use-menu-map t
+ ac-candidate-limit 20)
+
+;; Python mode settings
+(autoload 'python-mode "python-mode" "Python Mode." t)
+(add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
+(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+(setq py-electric-colon-active t)
+(add-hook 'python-mode-hook 'autopair-mode)
+(add-hook 'python-mode-hook 'yas-minor-mode)
+
+;; Jedi.el settings
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
+
 
 (cond
  ((system-is-windows)
@@ -156,9 +180,6 @@
 ;; Stuff that isn't platform-dependent
 ;; -------------------------------------
 
-;; Jedi.el settings
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)
 
 ;; el-get sync
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
@@ -167,13 +188,14 @@
 ;; Load MATLAB source files in Octave mode instead of Obj-C
 (add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
 
+
 ;; Set Python interpreter for use with python.el
-(setq
- python-shell-interpreter "ipython"
- python-shell-interpreter-args "--pylab"
- python-shell-prompt-regexp "In \\[[0-9]+\\]: "
- python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
- python-shell-completion-setup-code "from IPython.core.completerlib import module_completion"
- python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n"
- python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s''''))\n")
+;; (setq
+;;  python-shell-interpreter "ipython"
+;;  python-shell-interpreter-args "--pylab"
+;;  python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+;;  python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+;;  python-shell-completion-setup-code "from IPython.core.completerlib import module_completion"
+;;  python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n"
+;;  python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s''''))\n")
 
