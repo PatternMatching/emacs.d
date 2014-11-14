@@ -57,17 +57,22 @@
 (add-hook 'LaTeX-mode-hook (lambda ()
 			     (TeX-global-PDF-mode t)))
 
+;; el-get sync
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+(el-get 'sync)
+
+;; Load MATLAB source files in Octave mode instead of Obj-C
+(add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
 
 ;; python-mode
-(require 'python-mode)
+;; (require 'python-mode)
+
+;; python.el
+(require 'python)
 
 ;; Emacs IPython Notebook currently not working with IPython > 0.13
 ;;
 ;; (require 'ein)
-
-;; -------------------------------------
-;; Platform stuff
-;; -------------------------------------
 
 ;; Auto-Complete settings
 (setq
@@ -77,18 +82,20 @@
  ac-candidate-limit 20)
 
 ;; Python mode settings
-(autoload 'python-mode "python-mode" "Python Mode." t)
-(add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
-(add-to-list 'interpreter-mode-alist '("python" . python-mode))
-(setq py-electric-colon-active t)
-(add-hook 'python-mode-hook 'autopair-mode)
-(add-hook 'python-mode-hook 'yas-minor-mode)
+;; (autoload 'python-mode "python-mode" "Python Mode." t)
+;; (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
+;; (add-to-list 'interpreter-mode-alist '("python" . python-mode))
+;; (setq py-electric-colon-active t)
+;; (add-hook 'python-mode-hook 'autopair-mode)
+;; (add-hook 'python-mode-hook 'yas-minor-mode)
 
 ;; Jedi.el settings
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
 
-
+;; -------------------------------------
+;; Platform stuff
+;; -------------------------------------
 (cond
  ((system-is-windows)
   ;; Maximize the emacs window upon startup
@@ -131,6 +138,10 @@
 
   ;; Reset org-journal home directory
   (setq org-journal-dir "~/journal/")
+
+  ;; Python.el
+  (setq python-shell-interpreter "C:\\Python27\\Scripts\\ipython.exe"
+	python-shell-interpreter-args "console -i")
   )
  ((system-is-mac)
   ;; Darwin .emacs script goes here
@@ -167,9 +178,19 @@
 		(output-pdf "Skim")
 		(output-html "xdg-open"))))
 
+  ;; Python.el settings
+  (setq python-shell-interpreter "ipython"
+	python-shell-interpreter-args "-i")
+
+  
   )
  ((system-is-linux)
   ;; Linux .emacs script goes here
+
+  ;; Python.el settings
+  (setq python-shell-interpreter "ipython"
+	python-shell-interpreter-args "-i")
+
   )
  ((system-is-cygwin)
   ;; Cygwin stuff goes here
@@ -180,13 +201,6 @@
 ;; Stuff that isn't platform-dependent
 ;; -------------------------------------
 
-
-;; el-get sync
-(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-(el-get 'sync)
-
-;; Load MATLAB source files in Octave mode instead of Obj-C
-(add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
 
 
 ;; Set Python interpreter for use with python.el
