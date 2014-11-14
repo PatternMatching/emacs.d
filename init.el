@@ -57,10 +57,6 @@
 (add-hook 'LaTeX-mode-hook (lambda ()
 			     (TeX-global-PDF-mode t)))
 
-;; el-get sync
-(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-(el-get 'sync)
-
 ;; Load MATLAB source files in Octave mode instead of Obj-C
 (add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
 
@@ -197,19 +193,7 @@
   )
 )
 
-;; -------------------------------------
-;; Stuff that isn't platform-dependent
-;; -------------------------------------
-
-
-
-;; Set Python interpreter for use with python.el
-;; (setq
-;;  python-shell-interpreter "ipython"
-;;  python-shell-interpreter-args "--pylab"
-;;  python-shell-prompt-regexp "In \\[[0-9]+\\]: "
-;;  python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
-;;  python-shell-completion-setup-code "from IPython.core.completerlib import module_completion"
-;;  python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n"
-;;  python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s''''))\n")
-
+;; el-get sync - needs to be here because el-get is handled
+;; depending on platform
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+(el-get 'sync)
