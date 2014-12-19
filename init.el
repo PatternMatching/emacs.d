@@ -12,6 +12,8 @@
  ;; If there is more than one, they won't work right.
  )
 
+(tool-bar-mode -1)
+
 (server-start)
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
