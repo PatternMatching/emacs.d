@@ -6,6 +6,7 @@
 (setq use-dialog-box nil)
 (setq inhibit-startup-screen t)
 (setq inhibit-startup-echo-area-message t)
+(tool-bar-mode -1)
 
 ;; Window size and features
 (cond
