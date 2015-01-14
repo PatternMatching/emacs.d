@@ -21,11 +21,11 @@
 	   (concat "/Applications/Skim.app"
 		   "/Contents/SharedSupport/displayline"
 		   " %n %o %b")))))
-  (setq TeX-view-program-selection
-	(quote (((output-dvi style-pstricks) "dvips and gv")
-		(output-dvi "xdvi")
-		(output-pdf "Skim")
-		(output-html "xdg-open")))))
+    (setq TeX-view-program-selection
+	  (quote (((output-dvi style-pstricks) "dvips and gv")
+		  (output-dvi "xdvi")
+		  (output-pdf "Skim")
+		  (output-html "xdg-open")))))
  ((system-is-linux)
   ))
 
