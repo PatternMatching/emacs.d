@@ -9,3 +9,5 @@
 /server/
 /lisp/python-mode/
 /tramp
+/.#ac-comphist.dat
+/lisp/no-word.el
