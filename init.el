@@ -29,6 +29,9 @@
 ;; -----------------------------------
 ;; Text Editing Conveniences
 ;; -----------------------------------
+(column-number-mode)
+(setq-default fill-column 80)
+
 (require 'auto-complete)
 (require 'autopair)
 (require 'yasnippet)
@@ -59,3 +62,11 @@
 ;; SecDB
 ;; -------------------------------------
 (require 'init-secdb)
+
+;; SSL Cert for GNU TLS
+(require 'init-ssl)
+
+;; -----------------------------------
+;; Jabber
+;; -----------------------------------
+(require 'init-jabber)

@@ -12,7 +12,7 @@
 ;; ---------
 ;; Want to auto fill the document and auto-compile to PDF
 (add-hook 'LaTeX-mode-hook (lambda ()
-			     'turn-on-auto-fill			 
+			     (turn-on-auto-fill)
 			     (TeX-global-PDF-mode t)))
 
 (provide 'init-auctex)
