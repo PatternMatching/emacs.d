@@ -1,4 +1,7 @@
 (require 'platform)
+
+(setq org-journal-install-directory "~/.emacs.d/lisp/org-journal/")
+(add-to-list 'load-path org-journal-install-directory)
 (require 'org-journal)
 
 (cond
