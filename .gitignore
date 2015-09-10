@@ -9,6 +9,9 @@
 /server/
 /lisp/python-mode/
 /tramp
+/jabber-avatar-cache/
+/lisp/matlab-emacs/
+/lisp/#init-python.el#
 /.#ac-comphist.dat
 /lisp/no-word.el
 /lisp/org-journal/
