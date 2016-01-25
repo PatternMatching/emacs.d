@@ -1,5 +1,4 @@
-
-  ;; Python-Mode.el
+;; Python-Mode.el
 (setq py-install-directory "~/.emacs.d/lisp/python-mode/")
 (add-to-list 'load-path py-install-directory)
 (require 'python-mode)
@@ -13,10 +12,6 @@
  ((system-is-windows)
   (setq py-shell-name "python")
   (setq py-python-command "python")
-  (setq py-ipython-command "ipython")
-  (setq py-ipython-command-args "-i")
-  (setq py-ipython-input-prompt-re "In \\[[0-9]+\\]:")
-  (setq py-pdb-path (quote C:/Python27/python\ -i\ C:/Python27/Lib/pdb.py))
   )
  ((system-is-mac)
   (setq py-shell-name "ipython")
@@ -34,12 +29,12 @@
 ;; Want python-mode to set fill-column
 (setq py-auto-fill-mode t)
 
-;; anaconda-mode
-(add-hook 'python-mode-hook 'anaconda-mode)
+;; Toggle flycheck to 'on'
+(add-hook 'python-mode-hook 'py-flycheck-mode)
+(setq flycheck-highlighting-mode 'lines)
 
-;; Jedi.el settings
-;; (add-hook 'python-mode-hook 'jedi:setup)
-;; (setq jedi:complete-on-dot t)
+;; Anaconda
+(add-hook 'python-mode-hook 'anaconda-mode)
 
 (if (system-is-windows)
     (progn
@@ -84,3 +79,4 @@
   (message map-py-stat))
 
 (provide 'init-python)
+;;; init-python.el ends here

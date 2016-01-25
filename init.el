@@ -11,6 +11,11 @@
 (require 'platform)
 
 ;; -----------------------------------
+;; Execution Path Adjustments
+;; -----------------------------------
+(require 'init-path)
+
+;; -----------------------------------
 ;; Appearance
 ;; -----------------------------------
 (require 'init-themes)
@@ -47,6 +52,8 @@
 ;; Python
 ;; -----------------------------------
 (require 'init-python)
+
+(require 'init-flycheck)
 
 ;; -----------------------------------
 ;; Git
