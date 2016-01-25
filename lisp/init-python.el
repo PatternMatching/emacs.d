@@ -1,4 +1,4 @@
-;; Python-Mode.el
+;; init-python.el
 (setq py-install-directory "~/.emacs.d/lisp/python-mode/")
 (add-to-list 'load-path py-install-directory)
 (require 'python-mode)
@@ -6,7 +6,11 @@
 ;; Minor modes to use in python-mode
 ;; (add-hook 'python-mode-hook 'autopair-mode)
 ;; (add-hook 'python-mode-hook 'yas-minor-mode)
-
+(add-hook 'python-mode-hook 'anaconda-mode)
+(eval-after-load "company"
+  '(progn
+     (add-to-list 'company-backends 'company-anaconda)))
+     
 ;; Platform dependent python-mode settings
 (cond
  ((system-is-windows)
@@ -20,10 +24,10 @@
   (setq py-ipython-command-args '("--matplotlib"))
   )
  ((system-is-linux)
-  (setq py-shell-name "ipython")
-  (setq py-python-command "python")
-  (setq py-ipython-command "ipython")
-  (setq py-ipython-command-args '("--matplotlib"))
+  (setq py-shell-name "ipython2")
+  (setq py-python-command "python2")
+  (setq py-ipython-command "ipython2")
+  (setq py-ipython-command-args "--matplotlib=qt --automagic")
   ))
 
 ;; Want python-mode to set fill-column
@@ -32,9 +36,6 @@
 ;; Toggle flycheck to 'on'
 (add-hook 'python-mode-hook 'py-flycheck-mode)
 (setq flycheck-highlighting-mode 'lines)
-
-;; Anaconda
-(add-hook 'python-mode-hook 'anaconda-mode)
 
 (if (system-is-windows)
     (progn
