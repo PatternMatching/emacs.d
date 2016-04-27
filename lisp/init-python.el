@@ -5,6 +5,7 @@
 
 ;; Minor modes to use in python-mode
 (add-hook 'python-mode-hook 'anaconda-mode)
+(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
 (eval-after-load "company"
   '(progn
      (add-to-list 'company-backends 'company-anaconda)))
