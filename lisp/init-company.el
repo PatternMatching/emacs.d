@@ -3,7 +3,7 @@
 ;;; Code:
 (require 'company)
 
-(setq company-global-modes '(not jabber-chat jabber-roster))
+(setq company-global-modes '(not jabber-chat-mode jabber-roster-mode))
 (add-hook 'after-init-hook 'global-company-mode)
 
 (global-set-key (kbd "M-C-/") 'company-complete)
