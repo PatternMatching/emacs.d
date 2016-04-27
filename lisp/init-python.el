@@ -4,8 +4,6 @@
 (require 'python-mode)
 
 ;; Minor modes to use in python-mode
-;; (add-hook 'python-mode-hook 'autopair-mode)
-;; (add-hook 'python-mode-hook 'yas-minor-mode)
 (add-hook 'python-mode-hook 'anaconda-mode)
 (eval-after-load "company"
   '(progn

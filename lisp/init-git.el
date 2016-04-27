@@ -1,11 +1,11 @@
-(require 'platform)
+;;; init-git.el --- Setup for use of git and magit
+;;; Commentary:
 (require 'magit)
 
-(if (system-is-windows)
-    ;; Starts up the msys ssh-agent to avoid prompting
-    ;; for RSA passphrase
-    (load-file "~/.ssh/agent.env.el"))
+;;; Code:
+(when (system-is-windows) (setenv "SSH_ASKPASS" "git-gui--askpass"))
 
-(setq magit-last-seen-setup-instructions "1.4.0")
+(require 'ssh-agency)
 
 (provide 'init-git)
+;;; init-git.el ends here
