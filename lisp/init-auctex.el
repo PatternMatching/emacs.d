@@ -5,9 +5,6 @@
 (require 'font-latex)
 (require 'preview)
 
-;; Auto-Complete for AucTeX
-(require 'auto-complete-auctex)
-
 ;; Hooks
 ;; ---------
 ;; Want to auto fill the document and auto-compile to PDF

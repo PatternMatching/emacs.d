@@ -3,6 +3,7 @@
 (add-to-list 'load-path py-install-directory)
 (require 'python-mode)
 
+
 ;; Minor modes to use in python-mode
 (add-hook 'python-mode-hook 'anaconda-mode)
 (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
@@ -39,6 +40,10 @@
 
 (if (system-is-windows)
     (progn
+      ;; Turn off buffering so that pdb is flushed to
+      ;; stdout when a breakpoint is hit in shell-mode.
+      (setenv "PYTHONUNBUFFERED" "1")
+      
       ;; Python mapped prod by default
       (defvar map-py-stat "prod")
 

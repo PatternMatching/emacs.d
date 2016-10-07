@@ -1,8 +1,9 @@
 (require 'platform)
 
 (setq jabber-account-list '(("phennings@gmail.com"
-			     (:password . "intlkhxptdxvmfev")
-			    )))
+			     (:password . "intlkhxptdxvmfev"))
+			    ("malcolmsaint@swissjabber.org"
+			     (:password . "!@qDxCfG1984"))))
 
 (defun jabber()
   (interactive)
