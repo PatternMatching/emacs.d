@@ -6,7 +6,7 @@
 (require 'preview)
 
 ;; Auto-Complete for AucTeX
-(require 'auto-complete-auctex)
+(require 'company-auctex)
 
 ;; Hooks
 ;; ---------

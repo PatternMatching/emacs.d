@@ -3,6 +3,13 @@
 ;;
 ;; Author: Peter Hennings
 ;; 
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (server-start)
 
 ;; Show Emacs where to find all of the initialization elisp
@@ -37,12 +44,6 @@
 (column-number-mode)
 (setq-default fill-column 80)
 
-(require 'auto-complete)
-(require 'autopair)
-(require 'yasnippet)
-
-(require 'init-auto-complete)
-
 ;; -----------------------------------
 ;; LaTeX
 ;; -----------------------------------
@@ -62,11 +63,6 @@
 ;; -----------------------------------
 (require 'init-git)
 
-;; -----------------------------------
-;; MATLAB
-;; -----------------------------------
-(require 'init-matlab)
-
 ;; -------------------------------------
 ;; SecDB
 ;; -------------------------------------
@@ -79,9 +75,3 @@
 ;; Jabber
 ;; -----------------------------------
 (require 'init-jabber)
-
-;; -------------------------------------
-;; no-word
-;; -------------------------------------
-(require 'init-no-word)
-
