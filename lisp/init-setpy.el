@@ -22,23 +22,30 @@
 			    (concat "C:\\" winpy-str)
 			    (concat "C:\\" winpy-str "\\" py-str)
 			    (concat "C:\\" winpy-str "\\" py-str "\\scripts"))))
-    (progn
       (if (every #'file-accessible-directory-p new-path-entries)
-	  (setenv "PATH" (mapconcat 'identity
-				    (append new-path-entries path) ";"))
-	(error "The WinPython directories don't exist")))))
+	  (message "PATH environment variable updated to: %s"
+	    (setenv "PATH" (mapconcat 'identity
+				      (append new-path-entries path) ";")))
+	(error "The WinPython directories don't exist"))))
 
 (defun setpy--set-py-path (new-py-path)
   ""
   (if (every #'file-accessible-directory-p (split-string new-py-path ";"))
-      (setenv "PYTHONPATH" new-py-path)
+      (message "PYTHONPATH environment variable updated to %s"
+	       (setenv "PYTHONPATH" new-py-path))
     (error "One or more of the directories specified don't exist")))
 
 (defun setpy (bit-arch &optional pythonpath)
   ""
-  (progn
-    (setpy--set-path bit-arch)
-    (if (boundp 'pythonpath)
-	(setpy--set-py-path pythonpath))))
+  (interactive
+   (list
+    (string-to-number (read-from-minibuffer "Bit-Architecture: " "64"))
+    (read-from-minibuffer "PYTHONPATH: ")))
+    (if pythonpath
+	(progn
+	  (setpy--set-py-path pythonpath)
+	  (setpy--set-path bit-arch))
+      (setpy--set-path bit-arch)))
 
 (provide 'init-setpy)
+;;; init-setpy.el ends here
