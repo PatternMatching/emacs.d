@@ -2,7 +2,7 @@
 (setq py-install-directory "~/.emacs.d/lisp/python-mode/")
 (add-to-list 'load-path py-install-directory)
 (require 'python-mode)
-
+(require 'init-setpy)
 
 ;; Minor modes to use in python-mode
 (add-hook 'python-mode-hook 'anaconda-mode)
