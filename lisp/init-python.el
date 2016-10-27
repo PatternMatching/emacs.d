@@ -1,5 +1,5 @@
 ;; init-python.el
-(setq py-install-directory "~/.emacs.d/lisp/python-mode/")
+(setq py-install-directory "~/.emacs.d/lisp/python-mode.el-6.2.2/")
 (add-to-list 'load-path py-install-directory)
 (require 'python-mode)
 (require 'init-setpy)
