@@ -6,7 +6,13 @@
 
 (defun setpy--in-stuff-to-remove(x)
   ""
-  (member x stuff-to-remove))
+  (let ((stuff-to-remove '("C:\\WinPython-2.7.10.3-64"
+			   "C:\\WinPython-2.7.10.3-64\\python-2.7.10.amd64"
+			   "C:\\WinPython-2.7.10.3-64\\python-2.7.10.amd64\\scripts"
+			   "C:\\WinPython-2.7.10.3"
+			   "C:\\WinPython-2.7.10.3\\python-2.7.10"
+			   "C:\\WinPython-2.7.10.3\\python-2.7.10\\scripts")))
+    (member x stuff-to-remove)))
 
 (defun setpy--set-path (bit-arch)
   ""
@@ -14,7 +20,7 @@
 		       (32 . "WinPython-2.7.10.3")))
 	 (py-strs '((64 . "python-2.7.10.amd64")
 		    (32 . "python-2.7.10")))
-	 (path (remove-if #'in-stuff-to-remove
+	 (path (remove-if #'setpy--in-stuff-to-remove
 			  (split-string (getenv "PATH") ";")))
 	 (winpy-str (cdr (assoc bit-arch winpy-strs)))
 	 (py-str (cdr (assoc bit-arch py-strs)))
