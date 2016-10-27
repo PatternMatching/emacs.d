@@ -46,8 +46,6 @@
 (column-number-mode)
 (setq-default fill-column 80)
 
-(require 'yasnippet)
-
 ;; -----------------------------------
 ;; LaTeX
 ;; -----------------------------------
@@ -87,7 +85,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company-anaconda async company ctable dash epl fsm git-commit let-alist magit-popup pkg-info popup seq yasnippet ssh-agency offlineimap magit jabber flycheck epc auctex))))
+    (flycheck company-anaconda async ctable epl fsm let-alist pkg-info popup seq ssh-agency offlineimap jabber epc auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
