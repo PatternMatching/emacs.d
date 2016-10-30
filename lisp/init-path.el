@@ -4,7 +4,7 @@
       ;; Prepend current execution path with GNU tools
       (setenv "PATH"
 	      (concat
-	       "C:/MinGW/msys/1.0/bin" ";"
+	       "C:\\MinGW\\msys\\1.0\\bin" ";"
 	       (getenv "PATH")))))
 
 (provide 'init-path)
