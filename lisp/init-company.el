@@ -3,7 +3,11 @@
 ;;; Code:
 (require 'company)
 
-(setq company-global-modes '(not jabber-chat-mode jabber-roster-mode))
+(setq company-global-modes '(not jabber-chat-mode
+				 jabber-roster-mode
+				 magit-status-mode
+				 eshell-mode
+				 py-python-shell-mode))
 (add-hook 'after-init-hook 'global-company-mode)
 
 (global-set-key (kbd "M-C-/") 'company-complete)
