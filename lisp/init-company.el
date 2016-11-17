@@ -7,7 +7,8 @@
 				 jabber-roster-mode
 				 magit-status-mode
 				 eshell-mode
-				 py-python-shell-mode))
+				 py-python-shell-mode
+				 shell-mode))
 (add-hook 'after-init-hook 'global-company-mode)
 
 (global-set-key (kbd "M-C-/") 'company-complete)
