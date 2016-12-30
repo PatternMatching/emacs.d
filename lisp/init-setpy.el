@@ -25,15 +25,18 @@
 	 (winpy-str (cdr (assoc bit-arch winpy-strs)))
 	 (py-str (cdr (assoc bit-arch py-strs)))
 	 (new-path-entries (list
-			    (concat "C:/" winpy-str)
-			    (concat "C:/" winpy-str "/" py-str)
-			    (concat "C:/" winpy-str "/" py-str "/scripts"))))
+			    (concat "C:\\" winpy-str)
+			    (concat "C:\\" winpy-str "\\" py-str)
+			    (concat "C:\\" winpy-str "\\" py-str "\\scripts"))))
     (if (every #'file-accessible-directory-p new-path-entries)
-	(setq exec-path (append new-path-entries path)
-	      eshell-path-env (mapconcat 'identity
-					 (append new-path-entries
-						 path
-						 (list exec-directory)) ";"))
+	(progn
+	  (setenv "PATH" (concat (mapconcat 'identity new-path-entries ";")
+					    (getenv "PATH")))
+	  (setq exec-path (append new-path-entries path)
+		eshell-path-env (mapconcat 'identity
+					   (append new-path-entries
+						   path
+						   (list exec-directory)) ";")))
       (error "The WinPython directories don't exist"))))
 
 (defun setpy--set-py-path (new-py-path)
