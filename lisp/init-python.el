@@ -1,7 +1,11 @@
 ;; init-python.el
-(setq py-install-directory "~/.emacs.d/lisp/python-mode.el-6.2.2/")
-(add-to-list 'load-path py-install-directory)
-(require 'python-mode)
+;; (setq py-install-directory "~/.emacs.d/lisp/python-mode.el-6.2.2/")
+;; (add-to-list 'load-path py-install-directory)
+;; (require 'python-mode)
+(elpy-enable)
+(elpy-use-ipython)
+(setq python-shell-interpreter-args "--simple-prompt --pprint")
+(setq elpy-rpc-backend "jedi")
 (require 'init-setpy)
 
 ;; Minor modes to use in python-mode
@@ -13,29 +17,28 @@
      (add-to-list 'company-backends 'company-anaconda)))
      
 ;; Platform dependent python-mode settings
-(cond
- ((system-is-windows)
-  (setq py-shell-name "python")
-  (setq py-python-command "python")
-  )
- ((system-is-mac)
-  (setq py-shell-name "ipython")
-  (setq py-python-command "python")
-  (setq py-ipython-command "ipython")
-  (setq py-ipython-command-args '("--matplotlib"))
-  )
- ((system-is-linux)
-  (setq py-shell-name "ipython2")
-  (setq py-python-command "python2")
-  (setq py-ipython-command "ipython2")
-  (setq py-ipython-command-args "--matplotlib=qt --automagic")
-  ))
+;; (cond
+;;  ((system-is-windows)
+;;   (setq py-shell-name "python")
+;;   (setq py-python-command "python")
+;;   )
+;;  ((system-is-mac)
+;;   (setq py-shell-name "ipython")
+;;   (setq py-python-command "python")
+;;   (setq py-ipython-command "ipython")
+;;   (setq py-ipython-command-args '("--matplotlib"))
+;;   )
+;;  ((system-is-linux)
+;;   (setq py-shell-name "ipython2")
+;;   (setq py-python-command "python2")
+;;   (setq py-ipython-command "ipython2")
+;;   (setq py-ipython-command-args "--matplotlib=qt --automagic")
+;;   ))
 
 ;; Want python-mode to set fill-column
-(setq py-auto-fill-mode t)
+;; (setq py-auto-fill-mode t)
 
 ;; Toggle flycheck to 'on'
-(add-hook 'python-mode-hook 'py-flycheck-mode)
 (setq flycheck-highlighting-mode 'lines)
 
 (if (system-is-windows)
