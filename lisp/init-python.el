@@ -87,5 +87,18 @@
   (interactive)
   (message map-py-stat))
 
+;;; ElPy fix for "native completion setup failed" -- remove
+;;; when upgraded to Emacs 25.2
+(defun python-shell-completion-native-try ()
+  "Return non-nil if can trigger native completion"
+  (with-eval-after-load 'python
+    '(let ((python-shell-completion-native-enable t)
+	   (python-shell-completion-native-output-timeout
+	    python-shell-completion-native-try-output-timeout))
+       (python-shell-completion-native-get-completions
+	(get-buffer-process (current-buffer))
+	nil "_")))
+  )
+
 (provide 'init-python)
 ;;; init-python.el ends here

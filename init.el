@@ -17,6 +17,8 @@
 
 (require 'platform)
 
+(require 'init-multi-term)
+
 ;; -----------------------------------
 ;; Execution Path Adjustments
 ;; -----------------------------------
