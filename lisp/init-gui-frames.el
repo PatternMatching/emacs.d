@@ -26,6 +26,9 @@
 	  ))
   )
  ((system-is-linux)
-  ))
+  (toggle-frame-maximized)
+  (split-window-right)
+  (other-window 1)
+  (split-window-below)))
 
 (provide 'init-gui-frames)
