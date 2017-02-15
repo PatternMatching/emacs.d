@@ -9,8 +9,6 @@
 (require 'init-setpy)
 
 ;; Minor modes to use in python-mode
-(add-hook 'python-mode-hook 'anaconda-mode)
-(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
 (add-hook 'comint-output-filter 'python-pdbtrack-comint-output-filter-function)
 (eval-after-load "company"
   '(progn
