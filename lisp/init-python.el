@@ -1,5 +1,4 @@
 ;; init-python.el
-
 (elpy-enable)
 (setq elpy-rpc-backend "jedi")
 
