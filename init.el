@@ -19,11 +19,6 @@
 
 (require 'init-multi-term)
 
-;; -----------------------------------
-;; Execution Path Adjustments
-;; -----------------------------------
-(require 'init-path)
-
 (require 'init-proxy)
 
 ;; -----------------------------------
@@ -75,6 +70,11 @@
 ;; -----------------------------------
 (require 'init-jabber)
 
+;; -----------------------------------
+;; Execution Path Adjustments
+;; -----------------------------------
+(require 'init-path)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -82,7 +82,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (elpy magit flycheck company-anaconda async ctable epl fsm let-alist pkg-info popup seq ssh-agency offlineimap jabber epc auctex))))
+    (async ctable epl fsm pkg-info popup seq offlineimap jabber epc auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
