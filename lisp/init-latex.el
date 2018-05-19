@@ -5,7 +5,7 @@
  ((system-is-windows)
   (setq TeX-view-program-list
 	'(("Sumatra PDF"
-	   (concat "\"C:/Program Files (x86)/SumatraPDF/SumatraPDF.exe\""
+	   (concat "\"C:/Program Files/SumatraPDF/SumatraPDF.exe\""
 		   " -reuse-instance"
 		   (mode-io-correlate " -forward-search %b %n ")
 		   " %o"))))
