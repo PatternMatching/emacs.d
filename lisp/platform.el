@@ -2,7 +2,7 @@
 ;; Platform Stuff
 ;; -------------------------------------
 
-(defconst work-machine-name "EXPCC8889" "Name of work PC")
+(defconst work-machine-name "TRS-ATX-PC023" "Name of work PC")
 
 (defun system-is-windows ()
   (interactive)
