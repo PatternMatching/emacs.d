@@ -4,7 +4,6 @@
 
 ;;; Code:
 (require 'platform)
-(require 'flycheck)
 
 (use-package elpy
   :ensure t
