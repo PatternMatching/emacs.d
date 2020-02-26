@@ -5,21 +5,20 @@
 ;;; Code:
 (require 'platform)
 
-(use-package elpy
-  :ensure t
-  :init
-  (elpy-enable))
+(elpy-enable)
 
 ;; Minor modes to use in python-mode
 (add-hook 'comint-output-filter 'python-pdbtrack-comint-output-filter-function)
 
+;;; Use Flycheck instead of Flymake
+(when (load "flycheck" t t)
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (add-hook 'elpy-mode-hook 'flycheck-mode))
+
 (if (system-is-windows)
     (progn
-      (setenv "PYTHONUNBUFFERED" "1")))
-
-(if (system-is-work-pc)
-    (progn
-      (setq elpy-rpc-python-command "c:/Users/phennings/AppData/Local/Programs/Python/Python37/python.exe")))
+      (setenv "PYTHONUNBUFFERED" "1")
+      (setq elpy-rpc-python-command "python.exe")))
 
 (if (system-is-linux)
     (progn
