@@ -15,10 +15,28 @@
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   (add-hook 'elpy-mode-hook 'flycheck-mode))
 
+(defun get-current-buffer-flake8 ()
+  (interactive)
+  (concat
+   (file-name-as-directory
+    (concat pyvenv-virtual-env "Scripts")) "flake8.exe"))
+
+(defun get-current-buffer-pylint ()
+  (interactive)
+  (concat
+   (file-name-as-directory
+    (concat pyvenv-virtual-env "Scripts")) "pylint.exe"))
+
+(defvar windows-default-venv-dir
+  "c:/miniconda/envs/ts-venv-prod-emacs"
+  "Default Windows python virtual environment to activate")
+
 (if (system-is-windows)
     (progn
       (setenv "PYTHONUNBUFFERED" "1")
-      (setq elpy-rpc-python-command "python.exe")))
+      (setq elpy-rpc-python-command "C:/python/python-3.9.1/python.exe")
+      (setq elpy-rpc-virtualenv-path 'current)
+      (pyvenv-activate windows-default-venv-dir)))
 
 (if (system-is-linux)
     (progn
