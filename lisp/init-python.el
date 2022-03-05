@@ -43,5 +43,10 @@
       (setq elpy-rpc-python-command "python3")
       (setq python-shell-interpreter "python3")))
 
+(if (system-is-mac)
+    (progn
+      (setq elpy-rpc-python-command "python3")
+      (setq python-shell-interpreter "python3")))
+
 (provide 'init-python)
 ;;; init-python.el ends here
