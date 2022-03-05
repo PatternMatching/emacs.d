@@ -17,15 +17,7 @@
 	   (fboundp 'toggle-frame-maximized))
       (toggle-frame-maximized)
     (w32-send-sys-command 61488)))
- ((system-is-mac)
-  ;; Set initial window size
-  (setq default-frame-alist
-	'(
-	  (width . 100) ; characters
-	  (height . 60) ; lines
-	  ))
-  )
- ((system-is-linux)
+ ((or (system-is-mac) (system-is-linux))
   (toggle-frame-maximized)
   (split-window-right)
   (other-window 1)
