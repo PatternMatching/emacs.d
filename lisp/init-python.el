@@ -26,13 +26,16 @@
     (progn
       (setq elpy-rpc-python-command "/usr/bin/python3")
       (setq elpy-syntax-check-command "~/.local/bin/flake8")
-      (elpy-set-test-runner "py.test")
       (setenv "WORKON_HOME" "~/miniconda3/envs")))
 
 (if (system-is-mac)
     (progn
       (setq elpy-rpc-python-command "python3")
-      (setq python-shell-interpreter "python3")))
+      (setq python-shell-interpreter "python3")
+      (setq elpy-syntax-check-command "~/Library/Python/3.8/bin/flake8")
+      (setenv "WORKON_HOME" "~/miniconda3/envs")))
+
+(elpy-set-test-runner "py.test")
 
 (provide 'init-python)
 ;;; init-python.el ends here

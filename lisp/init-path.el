@@ -18,4 +18,7 @@
 	       (append exec-path msys-bin-dir)
 	       msys-local-bin-dir)))))
 
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
 (provide 'init-path)
