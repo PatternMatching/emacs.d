@@ -32,8 +32,8 @@
     (progn
       (setq elpy-rpc-python-command "python3")
       (setq python-shell-interpreter "python3")
-      (setq elpy-syntax-check-command "~/Library/Python/3.8/bin/flake8")
-      (setenv "WORKON_HOME" "~/miniconda3/envs")))
+      (setq elpy-syntax-check-command "/Library/Frameworks/Python.framework/Versions/3.12/bin/flake8")
+      (setenv "WORKON_HOME" "~/miniforge3/envs")))
 
 (elpy-set-test-runner "py.test")
 
