@@ -17,3 +17,6 @@
 /lisp/org-journal/
 /anaconda-mode/
 /lisp/python-mode*
+/elpy/
+/org-persist/
+/transient/
