@@ -20,3 +20,4 @@
 /elpy/
 /org-persist/
 /transient/
+.lsp-session*
