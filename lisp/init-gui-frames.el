@@ -18,19 +18,15 @@
       (toggle-frame-maximized)
     (w32-send-sys-command 61488)))
  ((or (system-is-mac) (system-is-linux))
-  (if (equal system-name "roscommon-laptop")
-      ;; Set frame to fixed size to avoid popping
-      ;; up new windows every time a buffer is
-      ;; opened
-      (progn
-	(set-frame-size (selected-frame) 1920 1200 t)
-	(split-window-right)
-	(other-window 1)
-	(split-window-below))
-    (progn
-      (toggle-frame-maximized)
-      (split-window-right)
-      (other-window 1)
-      (split-window-below)))))
+  ;; Set frame to fixed size to avoid popping
+  ;; up new windows every time a buffer is
+  ;; opened
+  (progn
+    (setq initial-frame-alist
+	  '((top . 100) (left . 40)
+	    (width . 220) (height . 70)))
+    (split-window-right)
+    (other-window 1)
+    (split-window-below))))
 
 (provide 'init-gui-frames)

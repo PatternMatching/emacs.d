@@ -21,3 +21,4 @@
 /org-persist/
 /transient/
 .lsp-session*
+.dap-breakpoints

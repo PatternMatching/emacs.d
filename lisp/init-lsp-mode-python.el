@@ -11,6 +11,8 @@
   (setq lsp-restart 'auto-restart)
   (setq read-process-output-max (* 1024 1024)))
 
+(setq lsp-pyright-multi-root nil)
+
 (use-package lsp-pyright
   :hook (python-mode . (lambda()
 			 (require 'lsp-pyright)
