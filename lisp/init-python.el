@@ -5,8 +5,6 @@
 ;;; Code:
 (require 'platform)
 
-(setenv "WORKON_HOME" "~/miniforge3/envs/")
-
 ;;; (require 'init-elpy)
 ;;; (require 'init-eglot-python)
 (require 'init-lsp-mode-python)

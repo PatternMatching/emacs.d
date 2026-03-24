@@ -11,15 +11,17 @@
   (setq lsp-restart 'auto-restart)
   (setq read-process-output-max (* 1024 1024)))
 
-(setq lsp-pyright-multi-root nil)
-
 (use-package lsp-pyright
-  :hook (python-mode . (lambda()
-			 (require 'lsp-pyright)
-			 (lsp)))) ; or lsp-deferred
+  :ensure t
+  :after lsp-mode
+  :config
+  (setq lsp-pyright-multi-root nil))
 
 (use-package lsp-ui
   :commands lsp-ui-mode)
+
+(with-eval-after-load 'lsp-mode
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.pixi\\'"))
 
 (use-package dap-mode
   :after lsp-mode
